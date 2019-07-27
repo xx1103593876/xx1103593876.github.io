@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>轮播图</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style:none;
+			}
+			img{
+				width: 450px;
+				height: 225px;
+			}
+			li{
+				position: absolute;
+				display: none;
+			}
+			li:first-child{
+				display: block;
+			}
+			ul{
+				margin-top: 20px;
+				margin-left: 20px;
+			}
+			button{
+				margin-top: 20px;
+				margin-left: 20px;
+				width: 200px;
+				height: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<button>上一张</button>
+		<button>下一张</button>
+		<ul>
+			<li><img src="img/14.jpeg" alt="" /></li>
+			<li><img src="img/15.jpeg" alt="" /></li>
+			<li><img src="img/16.jpeg" alt="" /></li>
+		</ul>
+		
+		<script src="js/jQuery1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var max=$("img").length-1;
+				var count=0;
+				$("button").eq(0).click(function(){
+					count--;
+					if(count<0){
+						count=max;
+					}
+					$("li").eq(count).fadeIn(500).siblings().fadeOut(500);
+				})
+				$("button").eq(1).click(function(){
+					count++;
+					if(count>max){
+						count=0;
+					}
+					$("li").eq(count).fadeIn(500).siblings().fadeOut(500);
+				})
+			})
+		</script>
+	</body>
+</html>

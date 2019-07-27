@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>拖动</title>
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style:none;
+			}
+			div{
+				width: 200px;
+				height: 200px;
+				background-color: #ccc;
+			}
+			ul{
+				display: inline-block;
+				background-color: sandybrown;
+				width: 200px;
+				margin-top: 20px;
+			}
+			li{
+				margin-bottom: 20px;
+				border: 1px solid #000;
+			}
+			.drag{
+				width: 200px;
+				background-color: skyblue;
+				height: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div>
+			<div class="drag">
+				
+			</div>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		
+		<script src="js/jQuery1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				$("div").eq(0).draggable({
+					handle:".drag"
+				});
+				$("ul").sortable({
+					opacity:0.3
+				});
+				$("div").eq(0).resizable({
+					handles:"s"
+				});
+			})
+		</script>
+	</body>
+</html>

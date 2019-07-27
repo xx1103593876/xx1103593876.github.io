@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>五角星</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style:none;
+			}
+			ul{
+				display: inline-block;
+			}
+			li{
+				color: coral;
+				display: inline-block;
+				font-size: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<ul>
+			<li>☆</li>
+			<li>☆</li>
+			<li>☆</li>
+			<li>☆</li>
+			<li>☆</li>
+		</ul>		
+		
+		<script src="js/jQuery1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				var xink="☆";
+				var xins="★";
+				$("li").on("mouseenter",function(){
+					$(this).text(xins).prevAll().text(xins);
+					$(this).nextAll().text(xink);
+					//$(this).text(xins).prevAll().text(xins).end.nextAll().text(xink);
+				})
+				$("ul").on("mouseleave",function(){
+					$(this).children().text(xink);
+					$(".cur").text(xins).prevAll().text(xins);
+				})
+				$("li").on("click",function(){
+					$(this).addClass("cur").siblings().removeClass("cur");
+				})
+				
+			})
+		</script>
+	</body>
+</html>

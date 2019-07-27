@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>相册案例</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style:none;
+			}
+			.imgall{
+				width: 200px;
+				height: 100px;
+				
+			}
+			ul{
+				margin-top: 20px;
+				margin-left: 30px;
+				display: flex;
+				width: 700px;
+			}
+			li{
+				overflow: hidden;
+				flex-grow: 1;
+			}
+			.imgone{
+				width: 800px;
+				margin-left: 30px;
+				margin-top: 20px;
+				height: 400px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<ul>
+			<li><img src="img/14.jpeg" alt="" class="imgall"/></li>
+			<li><img src="img/15.jpeg" alt="" class="imgall"/></li>
+			<li><img src="img/16.jpeg" alt="" class="imgall"/></li>
+		</ul>
+		
+		<img src="img/14.jpeg" alt="" class="imgone"/>
+		
+		<script src="js/jQuery1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				$("ul>li>img").click(function(){
+					
+					var imgUrl=$(this).attr("src");
+					$(".imgone").attr("src",imgUrl);
+					
+				})
+				
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>手风琴</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style:none;
+			}
+			ul{
+				width: 200px;
+				text-align: center;
+				margin-top: 10px;
+				margin-left: 10px;
+				border: 1px solid #000;
+				box-sizing: border-box;
+			}
+			li{
+				border: 1px solid #000;
+				box-sizing: border-box;
+			}
+			div{
+				background-color: #fff;
+				height: 300px;
+				display: none;
+			}
+			.span{
+				display: inline-block;
+				width: 100%;
+				background-color: sandybrown;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li><span class="span">标题1</span><div>div1</div></li>
+			<li><span class="span">标题2</span><div>div2</div></li>
+			<li><span class="span">标题3</span><div>div1</div></li>
+			<li><span class="span">标题4</span><div>div2</div></li>
+			<li><span class="span">标题5</span><div>div1</div></li>
+			<li><span class="span">标题6</span><div>div2</div></li>
+		</ul>
+		<script src="js/jQuery1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			$(function(){
+				$(".span").click(function(){
+					$(this).next().slideDown(500).parent().siblings().children("div").slideUp(500);
+				})
+			})
+			
+		</script>
+	</body>
+</html>

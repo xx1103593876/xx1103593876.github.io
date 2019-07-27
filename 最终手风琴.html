@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>最终手风琴</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			div{
+				width: 1200px;
+				height: 400px;
+				border: 2px solid #000;
+				margin: 100px auto;
+				overflow: hidden;
+			}
+			ul{
+				width: 1200px;
+			}
+			li{
+				width: 240px;
+				height: 400px;
+				float: left;
+			}
+			li:nth-child(1){
+				background: url(img/14.jpeg);
+				background-size: cover;
+			}
+			li:nth-child(2){
+				background: url(img/15.jpeg);
+				background-size: cover;
+			}
+			li:nth-child(3){
+				background: url(img/16.jpeg);
+				background-size: cover;
+			}
+			li:nth-child(4){
+				background: url(img/17.jpeg);
+				background-size: cover;
+			}
+			li:nth-child(5){
+				background: url(img/18.jpeg);	
+				background-size: cover;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		
+		<script src="js/jQuery1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-accordion.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			$(function(){
+				
+				
+				var colors=["green","blue","purple","yellow","cyan"];
+				$("#box").accordion(colors,100);
+				
+			})
+			
+		</script>
+	</body>
+</html>

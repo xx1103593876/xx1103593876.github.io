@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>弹幕效果</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style:none;
+			}
+			div{
+				border: 1px solid #000;
+				background-color: seashell;
+				width: 1000px;
+				height: 500px;
+				margin-top: 20px;
+				margin-left: 20px;
+				overflow: hidden;
+				position: relative;
+			}
+			span{
+				position: absolute;
+				font-size: 40px;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<input type="text" />
+		<button>发射</button>
+		<div></div>
+		<script src="js/jQuery1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				function getColor(){
+					return parseInt(Math.random()*100+100);
+				}
+				$("button").click(function(){
+					var topY=parseInt(Math.random()*400);
+					var txt=$("input").val();
+					$("<span>"+txt+"</span>").
+					css("color","rgb("+getColor()+","+getColor()+","+getColor()+")").
+					css("left","1020px").
+					css("top",topY).
+					animate({left:-500},3000,function(){
+						$(this).remove();
+					}).appendTo("div");
+					
+				})
+				
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>淘宝精品</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style:none;
+			}
+			.img{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				left: 220px;
+				top: 20px;
+			}
+			ul{
+				width: 200px;
+				display: inline-block;
+				text-align: center;
+				font-size: 30px;
+				left: 10px;
+				top: 20px;
+				position: absolute;
+			}
+			li{
+				border: 1px solid #000;
+				box-sizing: border-box;
+				margin-top: 5px;
+				background-color: skyblue;
+			}
+			li:hover{
+				background-color: #FFE4C4;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<ul>
+			<li>图一</li>
+			<li>图二</li>
+			<li>图三</li>
+		</ul>
+		<img src="img/14.jpeg" class="img"/>
+		<script src="js/jQuery1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			$(function(){
+				
+				$("ul>li").mouseenter(function(){
+					var index=$(this).index();
+					$("img")[0].src="img/"+(index+14)+".jpeg";
+				})
+				
+			})
+			
+		</script>
+	</body>
+</html>

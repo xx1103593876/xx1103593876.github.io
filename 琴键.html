@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>base</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style:none;
+			}
+			li{
+				height: 100px;
+				width: 400px;
+				line-height: 100px;
+				display: inline-block;
+				background-color: skyblue;
+				overflow: hidden;
+				position: relative;
+			}
+			ul{
+				font-size: 40px;
+				display: inline-block;
+			}
+			
+			.sspan{
+				background-color: sandybrown;
+				z-index: 100;
+				height: 100px;
+				width: 400px;
+				display: inline-block;
+				top: 0px;
+				left: 0;
+				position: absolute;
+			}
+			div{
+				text-align: center;
+				margin-top: 100px;
+			}
+			.fspan{
+				z-index: 998;
+				color: seashell;
+				position: relative;
+				display: inline-block;
+				width: 100%;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+		<ul>
+			<li><span class="fspan">你</span><span class="sspan"></span></li>
+			<li><span class="fspan">我</span><span class="sspan"></span></li>
+		</ul>
+		</div>
+		<script src="js/jQuery1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				$("li").mouseenter(function(){
+					$(this).children("span").stop().animate({marginTop: "-100px"},200);
+				}).mouseleave(function(){
+					$("li").children("span").stop().animate({marginTop: "0px"},200);
+				})
+				var flag=true;
+				$(document).on("keydown",function(e){
+					if(flag){
+						flag=false;
+						var key=e.keyCode;
+						if(key==65){
+							$("li").eq(0).trigger("mouseenter");
+						}
+						if(key==68){
+							$("li").eq(1).trigger("mouseenter");
+						}
+					}
+				})
+				$(document).on("keyup",function(e){
+					flag=true;
+					var key=e.keyCode;
+					if(key==65){
+						$("li").eq(0).trigger("mouseleave");
+					}
+					if(key==68){
+						$("li").eq(1).trigger("mouseleave");
+					}
+				})
+				
+			})
+		</script>
+	</body>
+</html>
