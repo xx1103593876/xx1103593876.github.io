@@ -1,7 +1,7 @@
 $(function() {
 	$(".turn i").click(function() {
-		$('.back').toggleClass("back-turn");
-		$('.front').toggleClass("front-turn");
+		$('.back').toggleClass("back-turn").toggleClass('opacity-all');
+		$('.front').toggleClass("front-turn").toggleClass('opacity-all');
 	});
 
 	$(".school-body ul li").on("mouseenter", function() {

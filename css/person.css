@@ -63,10 +63,10 @@
 	justify-content: center;
 	border: 2px solid #000;
 	border-radius: 6px;
-	border-image: -webkit-linear-gradient(#F80, #2ED) 20 20;
-	border-image: -moz-linear-gradient(#F80, #2ED) 20 20;
-	border-image: -o-linear-gradient(#F80, #2ED) 20 20;
-	border-image: linear-gradient(#F80, #2ED) 20 20;
+	border-image: -webkit-linear-gradient(#feca57, #2ED) 20 20;
+	border-image: -moz-linear-gradient(#feca57, #2ED) 20 20;
+	border-image: -o-linear-gradient(#feca57, #2ED) 20 20;
+	border-image: linear-gradient(#feca57, #2ED) 20 20;
 }
 
 .serice-box-group .box-title {
@@ -97,6 +97,7 @@
 	transform: rotate(45deg);
 	margin-bottom: 30px;
 	margin-top: 16px;
+	transition: 0.2s;
 }
 
 .service-icon i {
@@ -129,10 +130,10 @@
 	margin-top: 2em;
 	border: 2px solid #000;
 	border-radius: 6px;
-	border-image: -webkit-linear-gradient(#F80, #2ED) 20 20;
-	border-image: -moz-linear-gradient(#F80, #2ED) 20 20;
-	border-image: -o-linear-gradient(#F80, #2ED) 20 20;
-	border-image: linear-gradient(#F80, #2ED) 20 20;
+	border-image: -webkit-linear-gradient(#2ED, #feca57) 20 20;
+	border-image: -moz-linear-gradient(#2ED, #feca57) 20 20;
+	border-image: -o-linear-gradient(#2ED, #feca57) 20 20;
+	border-image: linear-gradient(#2ED, #feca57) 20 20;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -288,8 +289,8 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(25deg, #a29bfe, #74b9ff);
-	box-shadow: 6px 6px 14px #0984e3, inset 0 0 15px #81ecec;
+	background: linear-gradient(25deg, rgba(162,155,254,0.2), rgba(116,185,255,0.2));
+	box-shadow: inset 0 0 15px #81ecec;
 	display: flex;
 	flex-direction: column;
 	transition: .5s cubic-bezier(0.43, -0.45, 0.58, 1.51);
@@ -312,7 +313,7 @@
 	position: absolute;
 	right: 1rem;
 	top: 0.5rem;
-	color: #fdcb6e;
+	color: #0abde3;
 }
 
 h2,
@@ -342,7 +343,9 @@ h4 {
 	transform: rotateY(0deg);
 }
 
-
+.opacity-all{
+	opacity: 0;
+}
 /*部件*/
 
 .font-bold {
@@ -411,13 +414,18 @@ h4 {
 }
 
 .school-body ul li {
-	width: 60rem;
-	border-top: 1px solid #ddd;
+	width: 90%;
+	/*border-top: 2px solid #ddd;*/
 	color: #fff;
 	padding: 1rem;
+	padding-left: 15%;
 	margin: 0 auto;
 	font-size: 1rem;
 	cursor: pointer;
+	/*border-image: -webkit-linear-gradient(left,#F80, #2ED) 20 20;
+	border-image: -moz-linear-gradient(left,#F80, #2ED) 20 20;
+	border-image: -o-linear-gradient(left,#F80, #2ED) 20 20;
+	border-image: linear-gradient(left,#F80, #2ED) 20 20;*/
 }
 
 @media screen and (max-width:960px) {
@@ -446,7 +454,7 @@ h4 {
 
 .footer-body {
 	background: linear-gradient(45deg, #a55eea, #3867d6);
-	color: #ccc;
+	color: #fff;
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
@@ -474,7 +482,7 @@ h4 {
 }
 .returna{
 	text-decoration: none;
-	color: #ccc;
+	color: #fff;
 }
 @media screen and (max-width:960px) {
 	.footer-body .footer-inner {
