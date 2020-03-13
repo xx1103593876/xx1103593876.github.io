@@ -215,16 +215,17 @@
 				selectlist.onchange = changelist;
 
 				function changelist() {
-					load();
 					itemi = this.value;
-					gcinit();
 					bfql.src = itemi == -1 ? "" : list[itemi];
 					imgl.src = itemi == -1 ? 'img/09.jpg' : imglist[itemi];
 					if(itemi == -1) {
 						btnlist[3].innerHTML = "<span>播放/暂停</span>&spades;"
 						jdtinit();
+						gctxt.childNodes[1].innerHTML="";
 						clearTimeout(timer);
 					} else {
+						load();
+						gcinit();
 						clearTimeout(timer);
 						btnlist[3].innerHTML = "<span>播放/暂停</span>&clubs;"
 						time();
@@ -317,7 +318,6 @@
 						return item.slice(item.indexOf(']')+1);
 					})
 					var gcl='';
-					gctxt.childNodes[1].innerHTML="";
 					gctxt.childNodes[1].style.top=0;
 					gc.forEach((item)=>{
 						gcl=gcl+item+'</br>'
@@ -360,8 +360,6 @@
 						var thistime = e.offsetX / jdtl.parentNode.offsetWidth * bfql.duration;
 						bfql.currentTime = thistime;
 						bfql.play();
-						btnlist[3].innerHTML = "<span>播放/暂停</span>&clubs;"
-						playflag = true;
 					}
 				}
 				//播放模式
