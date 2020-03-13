@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				background-color: #fff;
+			}
+			
+			#main {
+				position: relative;
+				height: 500px;
+				width: 350px;
+				background: linear-gradient(#6cf, #9198e5);
+				border-radius: 10px;
+				margin: 5% auto;
+				box-shadow: 10px 10px 60px #000;
+				border: 2px solid #fff;
+			}
+			
+			.headimg>img {
+				height: 100%;
+				margin-left: -95px;
+			}
+			
+			.top>.headimg {
+				position: absolute;
+				border-radius: 10px;
+				height: 60%;
+				width: 60%;
+				overflow: hidden;
+				top: 1.5em;
+				left: -2em;
+				box-shadow: 1px 1px 30px #fff;
+			}
+			
+			.top>.btnlist {
+				float: right;
+				margin-top: 2.5em;
+				margin-right: 2em;
+			}
+			
+			.btnlist>.btn {
+				cursor: pointer;
+				font-weight: bold;
+				font-size: 50px;
+				margin-bottom: 20px;
+				height: 50px;
+				width: 50px;
+				text-align: center;
+				border-radius: 5px;
+				background-color: skyblue;
+				color: #FFFFFF;
+				position: relative;
+			}
+			
+			.btn>span {
+				position: absolute;
+				left: -136%;
+				bottom: 3px;
+				font-size: 12px;
+				width: 56px;
+				color: #fff;
+				pointer-events: none;
+				text-align: center;
+			}
+			
+			.noselect {
+				-webkit-touch-callout: none;
+				/* iOS Safari */
+				-webkit-user-select: none;
+				/* Chrome/Safari/Opera */
+				-khtml-user-select: none;
+				/* Konqueror */
+				-moz-user-select: none;
+				/* Firefox */
+				-ms-user-select: none;
+				/* Internet Explorer/Edge */
+				user-select: none;
+				/* Non-prefixed version, currently not supported by any browser */
+			}
+			
+			#seclectlist {
+				clear: both;
+				height: 10%;
+				width: 90%;
+				padding-top: 20px;
+				margin: 0 auto;
+			}
+			
+			select::-ms-expand {
+				display: none;
+			}
+			
+			#seclectlist>select {
+				width: 100%;
+				height: 90%;
+				border-radius: 10px;
+				border: none;
+				padding-left: 20px;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-ms-appearance: none;
+				box-shadow: inset 1px 1px 5px #000;
+			}
+			
+			#playlist {
+				height: 10%;
+				width: 85%;
+				padding-top: 20px;
+				margin: 0 auto;
+				text-align: right;
+				display: flex;
+				justify-content: space-between;
+			}
+			
+			#playlist>select {
+				height: 50%;
+				color: #636e72;
+				border-radius: 10px;
+				text-align: center;
+				text-align-last: center;
+				border: none;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-ms-appearance: none;
+				padding: 0px 10px 0 10px;
+			}
+			
+			.slider {
+				width: 86%;
+				color: #fff;
+				margin: 0 auto;
+			}
+			
+			.slider>.timetip {
+				display: flex;
+				justify-content: space-between;
+			}
+			
+			.slider>.timetip>p {
+				margin: 0;
+			}
+			
+			.jdtdiv {
+				width: 100%;
+				margin: 0 auto;
+				background: linear-gradient(45deg, #b8e994, #6cf);
+				height: 15px;
+				padding: 4px 10px 4px 10px;
+				box-sizing: border-box;
+				border-radius: 10px;
+			}
+			
+			.jdtdiv>.jdt {
+				background: #fff;
+				height: 100%;
+				border-radius: 10px;
+				border: 1px solid #fff;
+				box-sizing: border-box;
+			}
+			
+			.jdtdiv>.jdt>div {
+				background: linear-gradient(45deg, #fdcb6e, #ff7675);
+				height: 100%;
+				border-radius: 10px;
+				width: 0;
+			}
+			
+			#gctxt {
+				color: #fff;
+				height: 50%;
+				text-align: center;
+				position: relative;
+				width: 75%;
+				overflow: hidden;
+			}
+			#gctxt>div{
+				position: absolute;
+				top: 0px;
+				transition: .5s;
+				line-height: 25px;
+				font-size: 14px;
+				width: 100%;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				//定时器
+				var timer;
+
+				function time() {
+					timer = setTimeout(function() {
+						timeSlider();
+					}, 200)
+				}
+				//补0
+				function PrefixInteger(num, n) {
+					return(Array(n).join(0) + num).slice(-n);
+				}
+
+				var jdtl = document.querySelector('.slider>.jdtdiv>.jdt>div')
+				var bfql = document.getElementById("bfq");
+				var imgl = document.getElementById("img");
+				var gctxt=document.getElementById("gctxt");
+				var list = ['mp3/清明雨上.mp3', 'mp3/感谢你曾来过.mp3', 'mp3/月牙湾.mp3'];
+				var imglist = ['img/13.jpg', 'img/12.jpg', 'img/14.jpg'];
+				var selectlist = document.querySelector('#seclectlist>select');
+				var itemi = -1;
+				selectlist.onchange = changelist;
+
+				function changelist() {
+					load();
+					itemi = this.value;
+					gcinit();
+					bfql.src = itemi == -1 ? "" : list[itemi];
+					imgl.src = itemi == -1 ? 'img/09.jpg' : imglist[itemi];
+					if(itemi == -1) {
+						btnlist[3].innerHTML = "<span>播放/暂停</span>&spades;"
+						jdtinit();
+						clearTimeout(timer);
+					} else {
+						clearTimeout(timer);
+						btnlist[3].innerHTML = "<span>播放/暂停</span>&clubs;"
+						time();
+					}
+				}
+
+				function jdtinit() {
+					document.querySelector('.slider>.timetip>p:nth-child(2)').innerHTML = "00:00";
+					document.querySelector('.slider>.timetip>p:nth-child(1)').innerHTML = "00:00";
+					jdtl.style.width = '0px';
+				}
+				var btnlist = document.querySelectorAll('.btnlist>.btn');
+				//播放暂停
+				var playflag = true; //true 正在播放 false 已经暂停
+				btnlist[3].onclick = playAndPause;
+				function playAndPause() {
+					if(bfql.src && selectlist.value != -1) {
+						if(playflag) {
+							clearTimeout(timer);
+							bfql.pause();
+							btnlist[3].innerHTML = "<span>播放/暂停</span>&spades;"
+						} else {
+							time();
+							bfql.play();
+							btnlist[3].innerHTML = "<span>播放/暂停</span>&clubs;"
+						}
+						playflag = !playflag;
+					} else {
+						playflag = true;
+					}
+				}
+				//下一首
+				btnlist[2].onclick = next;
+
+				function next() {
+					clearTimeout(timer);
+					time();
+					if(selectlist.value < list.length - 1) {
+						var num = selectlist.value;
+						selectlist.value = ++num;
+					} else {
+						selectlist.value = "0";
+					}
+					itemi = selectlist.value;
+					gcinit();
+					bfql.src = list[selectlist.value];
+					imgl.src = imglist[selectlist.value];
+					btnlist[3].innerHTML = "<span>播放/暂停</span>&clubs;"
+					playflag = true;
+				}
+				//上一首
+				btnlist[1].onclick = per;
+
+				function per() {
+					clearTimeout(timer);
+					time();
+					if(selectlist.value > 0) {
+						var num = selectlist.value;
+						selectlist.value = --num;
+					} else {
+						selectlist.value = list.length - 1;
+					}
+					itemi = selectlist.value;
+					gcinit();
+					bfql.src = list[selectlist.value];
+					imgl.src = imglist[selectlist.value];
+					btnlist[3].innerHTML = "<span>播放/暂停</span>&clubs;"
+					playflag = true;
+				}
+				//爱好
+				var colorFlag = true;
+				btnlist[0].onclick = function() {
+					if(!colorFlag) {
+						btnlist[0].style.color = "#fff";
+					} else {
+						btnlist[0].style.color = "#ff7675";
+					}
+					colorFlag = !colorFlag;
+				}
+				//歌词
+				var text,gcall,gctime,gc;
+				function gcinit(){
+					text = load(list[itemi].split('.')[0]+".lrc"); 
+					gcall=text.split('\n');
+					gctime=gcall.map((item)=>{
+						var timeone= item.slice(item.indexOf('[')+1,item.indexOf(']'));
+						return timeone.split(':')[0]*60+Number(timeone.split(':')[1])-1;
+					})
+					gc=gcall.map((item)=>{
+						return item.slice(item.indexOf(']')+1);
+					})
+					var gcl='';
+					gctxt.childNodes[1].innerHTML="";
+					gctxt.childNodes[1].style.top=0;
+					gc.forEach((item)=>{
+						gcl=gcl+item+'</br>'
+					})
+					gctxt.childNodes[1].innerHTML=gcl;
+				}
+				function load(name) {  
+					let xhr =false;
+					xhr=new XMLHttpRequest();
+					var okStatus = document.location.protocol === "file:" ? 0 : 200;  
+					xhr.open('GET', name, false); 
+					xhr.overrideMimeType("text/html;charset=utf-8"); //默认为utf-8
+					xhr.send(null);  
+					return xhr.status === okStatus ? xhr.responseText : null;
+				}
+				bfql.ontimeupdate=function(){
+					var i=0;
+					while(this.currentTime>=gctime[i+1]){
+						i++;
+						gctxt.childNodes[1].style.top=i*-gctxt.offsetHeight+'px';
+					}
+				}
+				//时长以及进度条
+				function timeSlider() {
+					if(timer) time();
+					var current = parseInt(bfql.currentTime);
+					var duration = parseInt(bfql.duration);
+					var curmin = parseInt(current / 60);
+					var cursec = current % 60;
+					var durmin = parseInt(duration / 60);
+					var dursec = duration % 60;
+					document.querySelector('.slider>.timetip>p:nth-child(2)').innerHTML = PrefixInteger(durmin, 2) + ":" + PrefixInteger(dursec, 2);
+					document.querySelector('.slider>.timetip>p:nth-child(1)').innerHTML = PrefixInteger(curmin, 2) + ":" + PrefixInteger(cursec, 2)
+					jdtl.style.width = current / duration * jdtl.parentNode.offsetWidth + 'px';
+				}
+				//点击进度条
+				jdtl.parentNode.onclick = function(e) {
+					if(itemi != -1) {
+						jdtl.style.width = e.offsetX + 'px';
+						var thistime = e.offsetX / jdtl.parentNode.offsetWidth * bfql.duration;
+						bfql.currentTime = thistime;
+						bfql.play();
+					}
+				}
+				//播放模式
+				bfql.onended = function() {
+					var mode = document.querySelector('#playlist>select');
+					if(mode.value == 0) {
+						bfql.currentTime = 0;
+						bfql.play();
+					} else if(mode.value == 1) {
+						next();
+					} else if(mode.value == 2) {
+						var nexti = parseInt(Math.random() * list.length);
+						while(selectlist.value == nexti) {
+							nexti = parseInt(Math.random() * list.length);
+						}
+						selectlist.value = nexti;
+						bfql.src = list[nexti];
+						imgl.src = imglist[nexti];
+					}
+				}
+				
+				//键盘控制音量
+				document.onkeydown = function(e) {
+					var volumel = bfql.volume * 100;
+					if(e.keyCode == 38) {
+						if(volumel >= 100) {
+							bfql.volume = 1;
+						} else {
+							bfql.volume = (volumel + 5) / 100;
+						}
+					}
+					if(e.keyCode == 40) {
+						if(volumel <= 6) {
+							bfql.volume = 0;
+						} else {
+							bfql.volume = (volumel - 5) / 100;
+						}
+					}
+					//空格暂停
+					if(e.keyCode == 32) {
+						playAndPause();
+					}
+					//下一首
+					if(e.keyCode == 39) {
+						next();
+					}
+					//上一首
+					if(e.keyCode == 37) {
+						per();
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body style="overflow:scroll;overflow-y:hidden">
+		<div id="main">
+			<div class="top">
+				<div class="headimg">
+					<img id="img" src="img/09.jpg">
+				</div>
+				<div class="btnlist noselect">
+					<div class="btn" style="line-height: 48px;"><span>收藏</span>&hearts;</div>
+					<div class="btn" style="line-height: 40px;"><span>上一首</span>&laquo;</div>
+					<div class="btn" style="line-height: 39px;"><span>下一首</span>&raquo;</div>
+					<div class="btn" style="line-height: 45px;"><span>播放/暂停</span>&spades;</div>
+					<!--&clubs;-->
+				</div>
+			</div>
+			<div id="seclectlist">
+				<select>
+					<option value="-1" selected>请选择歌曲</option>
+					<option value="0">许嵩 - 清明雨上.mp3</option>
+					<option value="1">Ayo97,是阿涵阿 - 感谢你曾来过.mp3</option>
+					<option value="2">F.I.R. - 月牙湾.mp3</option>
+				</select>
+			</div>
+			<div class="slider">
+				<div class="timetip">
+					<p>00:00</p>
+					<p>00:00</p>
+				</div>
+				<div class="jdtdiv">
+					<div class="jdt">
+						<div></div>
+					</div>
+				</div>
+			</div>
+			<div id="playlist">
+				<div id="gctxt">
+					<div></div>
+				</div>
+				<select>
+					<option value="0" selected>单曲循环</option>
+					<option value="1">列表循环</option>
+					<option value="2">随机播放</option>
+				</select>
+			</div>
+		</div>
+		<audio controls id="bfq" autoplay>
+			<source src="" type="audio/mp3" />
+		</audio>
+	</body>
+
+</html>
