@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>项目文档</title>
+		<style type="text/css">
+			body {
+				overflow: hidden;
+				background-color: #636e72;
+			}
+			
+			.handout_wrap_inner {
+				overflow: hidden;
+			}
+			
+			.list {
+				height: 50px;
+				width: 100%;
+			}
+			
+			.list>.item {
+				display: inline-block;
+				box-sizing: border-box;
+				padding: 10px;
+				background-color: #fff;
+				color: #000;
+				border-radius: 10px;
+				
+			}
+			
+			.list>.active {
+				background-color: #2d3436;
+				color: #eee;
+			}
+			
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="list">
+			<div class="item active">启农</div>
+			<div class="item">图书馆管理系统</div>
+			<div class="item">全域旅游</div>
+		</div>
+		<div id="handout_wrap_inner"></div>
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jq-media.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var option = {
+				width: $(window).width(),
+				height: ($(window).height() - 50) + 'px',
+				autoplay: true,
+				src: './pdf/启农.pdf',
+			}
+			
+			$(document).ready(function() {
+				$('#handout_wrap_inner').media(option);
+			});
+			
+			window.onresize = function(){
+ 				$('#handout_wrap_inner').width($(window).width());
+ 				$('#handout_wrap_inner>iframe').width($(window).width());
+ 				$('#handout_wrap_inner>iframe').height(($(window).height() - 50) + 'px');
+			}
+			
+			$(".list").on("click","div",function(){
+				$("#handout_wrap_inner>iframe").attr("src", './pdf/'+$(this).html()+'.pdf');
+				$(this).siblings().removeClass('active');
+				$(this).addClass('active');
+			})
+			
+		</script>
+	</body>
+
+</html>
